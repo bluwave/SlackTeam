@@ -52,3 +52,13 @@ struct Profile: Mappable {
         imageUrl24 = map.optionalFrom(ProfileKeyPaths.imageUrl24) ?? ""
     }
 }
+
+struct ProfileResponse: Mappable {
+    var profiles: [Profile] = []
+    
+    init() {}
+    
+    init(map: Mapper) throws {
+        profiles = map.optionalFrom("members") ?? []
+    }
+}

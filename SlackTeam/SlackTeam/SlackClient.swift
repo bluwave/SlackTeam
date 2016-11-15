@@ -8,9 +8,9 @@
 
 import Foundation
 import Alamofire
+import Mapper
 
-typealias GenericDictionary = [String: Any]
-typealias SlackClientHandler = ([GenericDictionary]?, Error?) -> Void
+typealias SlackClientHandler = ([Profile]?, Error?) -> Void
 
 struct SlackConstants {
     struct Server {
@@ -23,16 +23,23 @@ struct SlackConstants {
 
 class SlackClient {
     
-    var sessionManager: SessionManager?
+    var sessionManager: SessionManager = SessionManager.default
     
-    func fetchProfiles(handler: SlackClientHandler) {
+    func fetchProfiles(handler: @escaping SlackClientHandler) {
         let url = "\(SlackConstants.Server.baseUrl)\(SlackConstants.Server.userListPath)?\(SlackConstants.Server.urlParamToken)=\(SlackConstants.Server.serverToken)"
-        self.sessionManager?.request(url).responseJSON{ (response) in
+        sessionManager.request(url).responseJSON{ (response) in
             switch response.result {
             case .success:
-                print("result: \(response.result.value)")
+                if let data = response.result.value as? NSDictionary, let profileResponse = ProfileResponse.from(data) {
+                    handler(profileResponse.profiles, nil)
+                }
+                else {
+                    let error = NSError(domain: "com.acme.slackClient", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid response"])
+                    handler(nil, error)
+                }
             case .failure(let error):
                 print("\(#function) error: \(error)")
+                handler(nil, error)
             }
         }
     }
