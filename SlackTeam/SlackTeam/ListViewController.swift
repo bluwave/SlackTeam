@@ -45,7 +45,11 @@ class ListViewController: UIViewController {
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.row < profiles.count {
+            let profileDetailsViewController = DetailViewController(nibName: String(describing: DetailViewController.self), bundle: nil)
+            profileDetailsViewController.profile = profiles[indexPath.row]
+            navigationController?.pushViewController(profileDetailsViewController, animated: true)
+        }
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

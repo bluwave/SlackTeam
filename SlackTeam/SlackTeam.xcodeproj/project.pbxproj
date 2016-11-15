@@ -10,6 +10,9 @@
 		2712270A1DDB1A9500A78D87 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271227091DDB1A9500A78D87 /* Constants.swift */; };
 		2712270C1DDB205500A78D87 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2712270B1DDB205500A78D87 /* Profile.swift */; };
 		2712270F1DDB2EFA00A78D87 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2712270E1DDB2EFA00A78D87 /* NSError.swift */; };
+		271227121DDB859400A78D87 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271227101DDB859400A78D87 /* DetailViewController.swift */; };
+		271227131DDB859400A78D87 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271227111DDB859400A78D87 /* DetailViewController.xib */; };
+		271227161DDBAA6000A78D87 /* UIImage+BlurAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271227151DDBAA6000A78D87 /* UIImage+BlurAdditions.m */; };
 		27277FD21DDABF7700E0AC5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27277FD11DDABF7700E0AC5C /* AppDelegate.swift */; };
 		27277FD41DDABF7700E0AC5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27277FD31DDABF7700E0AC5C /* ViewController.swift */; };
 		27277FD71DDABF7700E0AC5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27277FD51DDABF7700E0AC5C /* Main.storyboard */; };
@@ -41,6 +44,11 @@
 		271227091DDB1A9500A78D87 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2712270B1DDB205500A78D87 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		2712270E1DDB2EFA00A78D87 /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
+		271227101DDB859400A78D87 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		271227111DDB859400A78D87 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		271227141DDBAA6000A78D87 /* UIImage+BlurAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BlurAdditions.h"; sourceTree = "<group>"; };
+		271227151DDBAA6000A78D87 /* UIImage+BlurAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BlurAdditions.m"; sourceTree = "<group>"; };
+		271227171DDBAE7500A78D87 /* SlackTeam-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SlackTeam-Bridging-Header.h"; sourceTree = "<group>"; };
 		27277FCE1DDABF7700E0AC5C /* SlackTeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlackTeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27277FD11DDABF7700E0AC5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27277FD31DDABF7700E0AC5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,11 +129,11 @@
 				27277FF81DDAC6FC00E0AC5C /* Fonts */,
 				27277FF11DDAC31500E0AC5C /* ViewController */,
 				27277FD11DDABF7700E0AC5C /* AppDelegate.swift */,
-				27277FD31DDABF7700E0AC5C /* ViewController.swift */,
 				27277FD51DDABF7700E0AC5C /* Main.storyboard */,
 				27277FD81DDABF7700E0AC5C /* Assets.xcassets */,
 				27277FDD1DDABF7700E0AC5C /* Info.plist */,
 				271227091DDB1A9500A78D87 /* Constants.swift */,
+				271227171DDBAE7500A78D87 /* SlackTeam-Bridging-Header.h */,
 			);
 			path = SlackTeam;
 			sourceTree = "<group>";
@@ -142,7 +150,9 @@
 		27277FF11DDAC31500E0AC5C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				27277FD31DDABF7700E0AC5C /* ViewController.swift */,
 				27277FF21DDAC34100E0AC5C /* ListViewController.swift */,
+				271227101DDB859400A78D87 /* DetailViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -159,6 +169,8 @@
 		27277FF91DDAC70B00E0AC5C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				271227141DDBAA6000A78D87 /* UIImage+BlurAdditions.h */,
+				271227151DDBAA6000A78D87 /* UIImage+BlurAdditions.m */,
 				27277FFA1DDAC72000E0AC5C /* UIFontExtensions.swift */,
 				272780001DDACC7500E0AC5C /* UIViewExtensions.swift */,
 				2712270E1DDB2EFA00A78D87 /* NSError.swift */,
@@ -172,6 +184,7 @@
 				272780031DDACD1300E0AC5C /* ListViewControllerTableViewCell.xib */,
 				27277FF31DDAC34100E0AC5C /* ListViewController.xib */,
 				27277FDA1DDABF7700E0AC5C /* LaunchScreen.storyboard */,
+				271227111DDB859400A78D87 /* DetailViewController.xib */,
 			);
 			name = nibs;
 			sourceTree = "<group>";
@@ -290,6 +303,7 @@
 				272780041DDACD1300E0AC5C /* ListViewControllerTableViewCell.xib in Resources */,
 				27277FFF1DDACA0700E0AC5C /* OpenSans-Semibold.ttf in Resources */,
 				27277FDC1DDABF7700E0AC5C /* LaunchScreen.storyboard in Resources */,
+				271227131DDB859400A78D87 /* DetailViewController.xib in Resources */,
 				27277FD91DDABF7700E0AC5C /* Assets.xcassets in Resources */,
 				27277FF51DDAC34100E0AC5C /* ListViewController.xib in Resources */,
 				27277FFE1DDACA0700E0AC5C /* OpenSans-Light.ttf in Resources */,
@@ -360,12 +374,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				27277FD41DDABF7700E0AC5C /* ViewController.swift in Sources */,
+				271227161DDBAA6000A78D87 /* UIImage+BlurAdditions.m in Sources */,
 				2712270C1DDB205500A78D87 /* Profile.swift in Sources */,
 				272780011DDACC7500E0AC5C /* UIViewExtensions.swift in Sources */,
 				27277FD21DDABF7700E0AC5C /* AppDelegate.swift in Sources */,
 				27277FFB1DDAC72000E0AC5C /* UIFontExtensions.swift in Sources */,
 				2712270A1DDB1A9500A78D87 /* Constants.swift in Sources */,
 				27277FF41DDAC34100E0AC5C /* ListViewController.swift in Sources */,
+				271227121DDB859400A78D87 /* DetailViewController.swift in Sources */,
 				272780071DDAD86D00E0AC5C /* SlackClient.swift in Sources */,
 				2712270F1DDB2EFA00A78D87 /* NSError.swift in Sources */,
 			);
@@ -510,6 +526,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acme.SlackTeam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SlackTeam/SlackTeam-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -525,6 +542,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acme.SlackTeam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SlackTeam/SlackTeam-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
