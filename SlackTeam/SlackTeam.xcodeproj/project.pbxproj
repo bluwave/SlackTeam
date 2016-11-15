@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2712270A1DDB1A9500A78D87 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271227091DDB1A9500A78D87 /* Constants.swift */; };
+		2712270C1DDB205500A78D87 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2712270B1DDB205500A78D87 /* Profile.swift */; };
 		27277FD21DDABF7700E0AC5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27277FD11DDABF7700E0AC5C /* AppDelegate.swift */; };
 		27277FD41DDABF7700E0AC5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27277FD31DDABF7700E0AC5C /* ViewController.swift */; };
 		27277FD71DDABF7700E0AC5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27277FD51DDABF7700E0AC5C /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		271227091DDB1A9500A78D87 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2712270B1DDB205500A78D87 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		27277FCE1DDABF7700E0AC5C /* SlackTeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlackTeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27277FD11DDABF7700E0AC5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27277FD31DDABF7700E0AC5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2712270D1DDB205A00A78D87 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2712270B1DDB205500A78D87 /* Profile.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		27277FC51DDABF7700E0AC5C = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +112,7 @@
 		27277FD01DDABF7700E0AC5C /* SlackTeam */ = {
 			isa = PBXGroup;
 			children = (
+				2712270D1DDB205A00A78D87 /* Models */,
 				272780051DDAD85000E0AC5C /* API / Comm */,
 				272780021DDACD0300E0AC5C /* nibs */,
 				27277FF91DDAC70B00E0AC5C /* Extensions */,
@@ -346,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27277FD41DDABF7700E0AC5C /* ViewController.swift in Sources */,
+				2712270C1DDB205500A78D87 /* Profile.swift in Sources */,
 				272780011DDACC7500E0AC5C /* UIViewExtensions.swift in Sources */,
 				27277FD21DDABF7700E0AC5C /* AppDelegate.swift in Sources */,
 				27277FFB1DDAC72000E0AC5C /* UIFontExtensions.swift in Sources */,

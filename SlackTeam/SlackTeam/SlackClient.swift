@@ -19,20 +19,6 @@ struct SlackConstants {
         static var urlParamToken = "token"
         static var serverToken = ""
     }
-    struct ResponseKeyPaths {
-        static var profileEmail = "profile.email"
-        static var serverID = "id"
-        static var profileUsername = "name"
-        static var profileFirstName = "profile.first_name"
-        static var profileLastName = "profile.last_name"
-        static var profileRealName = "profile.real_name"
-        static var profileTitle = "profile.title"
-        static var profileImageURL24 = "profile.image_24"
-        static var profileImageURL48 = "profile.image_48"
-        static var profileImageURL72 = "profile.image_72"
-        static var profileImageURL192 = "profile.image_192"
-        static var profileColor = "color"
-    }
 }
 
 class SlackClient {
