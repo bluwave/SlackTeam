@@ -10,17 +10,17 @@ import Foundation
 import Mapper
 
 struct ProfileKeyPaths {
-    static var email = "profile.email"
-    static var username = "name"
-    static var firstName = "profile.first_name"
-    static var lastName = "profile.last_name"
-    static var realName = "profile.real_name"
-    static var title = "profile.title"
-    static var imageUrl24 = "profile.image_24"
-    static var imageUrl48 = "profile.image_48"
-    static var imageUrl72 = "profile.image_72"
-    static var imageUrl192 = "profile.image_192"
-    static var color = "color"
+    static let email = "profile.email"
+    static let username = "name"
+    static let firstName = "profile.first_name"
+    static let lastName = "profile.last_name"
+    static let realName = "profile.real_name"
+    static let title = "profile.title"
+    static let imageUrl24 = "profile.image_24"
+    static let imageUrl48 = "profile.image_48"
+    static let imageUrl72 = "profile.image_72"
+    static let imageUrl192 = "profile.image_192"
+    static let color = "color"
 }
 
 struct Profile: Mappable {

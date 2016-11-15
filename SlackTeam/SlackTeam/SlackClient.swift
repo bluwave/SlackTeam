@@ -14,10 +14,10 @@ typealias SlackClientHandler = ([Profile]?, Error?) -> Void
 
 struct SlackConstants {
     struct Server {
-        static var baseUrl = "https://slack.com"
-        static var userListPath = "/api/users.list"
-        static var urlParamToken = "token"
-        static var serverToken = ""
+        static let baseUrl = "https://slack.com"
+        static let userListPath = "/api/users.list"
+        static let urlParamToken = "token"
+        static let serverToken = "<SLACK API TOKEN HERE>"
     }
 }
 
@@ -30,11 +30,14 @@ class SlackClient {
         sessionManager.request(url).responseJSON{ (response) in
             switch response.result {
             case .success:
-                if let data = response.result.value as? NSDictionary, let profileResponse = ProfileResponse.from(data) {
+                if let serverError = self.parseError(response.result.value) {
+                    handler(nil, serverError)
+                }
+                else if let data = response.result.value as? NSDictionary, let profileResponse = ProfileResponse.from(data) {
                     handler(profileResponse.profiles, nil)
                 }
                 else {
-                    let error = NSError(domain: "com.acme.slackClient", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid response"])
+                    let error = NSError.internalError(message: "Invalid Response")
                     handler(nil, error)
                 }
             case .failure(let error):
@@ -42,5 +45,12 @@ class SlackClient {
                 handler(nil, error)
             }
         }
+    }
+    
+    func parseError(_ json: Any?) -> NSError? {
+        if let dictionary = json as? [String: Any], let errorString = dictionary["error"] as? String {
+            return NSError.internalError(message: errorString)
+        }
+        return nil
     }
 }
