@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Light.ttf">
+            <string>OpenSans-Light</string>
+        </array>
+        <array key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FOx-tj-S9K" customClass="ListViewControllerTableViewCell" customModule="SlackTeam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FOx-tj-S9K" id="eN0-PX-HcK">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PRS-qN-l77">
+                        <rect key="frame" x="15" y="10" width="75" height="75"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="75" id="7vx-wa-e2V"/>
+                            <constraint firstAttribute="height" constant="75" id="rTE-r4-yCa"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H24-iM-3Rx">
+                        <rect key="frame" x="105" y="15" width="200" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="4Eo-dN-6j5"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bossy Manager" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA6-4X-uVq">
+                        <rect key="frame" x="105" y="58.5" width="215" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Scp-td-A1u"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="13"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JD55555" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Vl-kB-F9O">
+                        <rect key="frame" x="105" y="37" width="215" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="N25-Ah-Wtv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerY" secondItem="PRS-qN-l77" secondAttribute="centerY" id="0dg-4c-cTE"/>
+                    <constraint firstItem="0Vl-kB-F9O" firstAttribute="top" secondItem="H24-iM-3Rx" secondAttribute="bottom" constant="5" id="60D-Vn-dnj"/>
+                    <constraint firstItem="WA6-4X-uVq" firstAttribute="top" secondItem="H24-iM-3Rx" secondAttribute="bottom" constant="5" id="8zV-ID-FA9"/>
+                    <constraint firstAttribute="bottom" secondItem="WA6-4X-uVq" secondAttribute="bottom" constant="15" id="AI9-f0-CR0"/>
+                    <constraint firstItem="WA6-4X-uVq" firstAttribute="top" secondItem="0Vl-kB-F9O" secondAttribute="bottom" constant="5" id="ENS-gi-7Qi"/>
+                    <constraint firstAttribute="trailing" secondItem="H24-iM-3Rx" secondAttribute="trailing" constant="15" id="Gta-Sl-mDD"/>
+                    <constraint firstAttribute="bottom" secondItem="PRS-qN-l77" secondAttribute="bottom" id="JL1-Ya-ihp"/>
+                    <constraint firstItem="H24-iM-3Rx" firstAttribute="top" secondItem="eN0-PX-HcK" secondAttribute="top" constant="15" id="L8u-2z-aMT"/>
+                    <constraint firstItem="PRS-qN-l77" firstAttribute="leading" secondItem="eN0-PX-HcK" secondAttribute="leading" constant="15" id="Qbj-iQ-BYm"/>
+                    <constraint firstItem="H24-iM-3Rx" firstAttribute="leading" secondItem="PRS-qN-l77" secondAttribute="trailing" constant="15" id="Txf-8M-WPt"/>
+                    <constraint firstItem="PRS-qN-l77" firstAttribute="top" secondItem="eN0-PX-HcK" secondAttribute="top" id="Vtq-Az-6aw"/>
+                    <constraint firstItem="0Vl-kB-F9O" firstAttribute="leading" secondItem="PRS-qN-l77" secondAttribute="trailing" constant="15" id="akk-jj-xYs"/>
+                    <constraint firstAttribute="centerY" secondItem="PRS-qN-l77" secondAttribute="centerY" id="azD-II-gv3"/>
+                    <constraint firstAttribute="trailing" secondItem="0Vl-kB-F9O" secondAttribute="trailing" id="h5O-VN-wlo"/>
+                    <constraint firstAttribute="trailing" secondItem="WA6-4X-uVq" secondAttribute="trailing" id="h7E-gk-v0Y"/>
+                    <constraint firstItem="WA6-4X-uVq" firstAttribute="leading" secondItem="PRS-qN-l77" secondAttribute="trailing" constant="15" id="pUc-0x-ihU"/>
+                    <constraint firstAttribute="centerY" secondItem="0Vl-kB-F9O" secondAttribute="centerY" id="pYL-0v-m9V"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="JL1-Ya-ihp"/>
+                        <exclude reference="Vtq-Az-6aw"/>
+                        <exclude reference="60D-Vn-dnj"/>
+                        <exclude reference="8zV-ID-FA9"/>
+                        <exclude reference="ENS-gi-7Qi"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <connections>
+                <outlet property="nameLabel" destination="H24-iM-3Rx" id="GAE-gG-Il1"/>
+                <outlet property="profileImageView" destination="PRS-qN-l77" id="YaC-gU-JYG"/>
+                <outlet property="titleLabel" destination="WA6-4X-uVq" id="f8k-Wj-aKW"/>
+                <outlet property="usernameLabel" destination="0Vl-kB-F9O" id="jlK-wk-GGR"/>
+            </connections>
+            <point key="canvasLocation" x="277" y="445.5"/>
+        </tableViewCell>
+    </objects>
+</document>

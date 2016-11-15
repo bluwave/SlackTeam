@@ -130,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				27277FF21DDAC34100E0AC5C /* ListViewController.swift */,
-				27277FF31DDAC34100E0AC5C /* ListViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -157,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				272780031DDACD1300E0AC5C /* ListViewControllerTableViewCell.xib */,
+				27277FF31DDAC34100E0AC5C /* ListViewController.xib */,
 				27277FDA1DDABF7700E0AC5C /* LaunchScreen.storyboard */,
 			);
 			name = nibs;

@@ -15,12 +15,13 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "List"
+        title = "HOLLYWOOD's HOTTEST STARS USING SLACK"
         configureTableView()
     }
 
     func configureTableView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        let nib = UINib(nibName: String(describing: ListViewControllerTableViewCell.self), bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
     }
 }
 
@@ -38,5 +39,30 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = "row \(indexPath.row)"
         
         return cell
+    }
+}
+
+class ListViewControllerTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    
+    func awaeFromNib() {
+        super.awakeFromNib()
+        configureSelectionBackgroundColor()
+        configureProfileImage()
+    }
+    
+    func configureProfileImage() {
+        profileImageView.makeCircular()
+        profileImageView.layer.borderWidth = 4.0
+    }
+    
+    func configureSelectionBackgroundColor() {
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor(white: 0.4, alpha: 0.5)
+        self.selectedBackgroundView = bgColorView
     }
 }
