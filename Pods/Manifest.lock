@@ -1,17 +1,23 @@
 PODS:
   - Alamofire (4.0.1)
+  - HexColors (4.0.0)
+  - ModelMapper (5.0.0)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
 
 DEPENDENCIES:
   - Alamofire
+  - HexColors
+  - ModelMapper
   - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  HexColors: 5f95843ef89aff6a72e1fd3a8ebabf205cc43379
+  ModelMapper: 89ced1f51ec6360e93f6889d08c818d4cad526a3
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 299b9e5801fdeb3a6da315dec8709f6ba58b4549
+PODFILE CHECKSUM: a007226b0f4e1863392beae96e2fa164225f638b
 
 COCOAPODS: 1.1.1

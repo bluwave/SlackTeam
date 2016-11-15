@@ -3,6 +3,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 def common_pods
 	pod 'Alamofire'
     pod 'SDWebImage'
+	pod 'HexColors'
+	pod 'ModelMapper'
 end
 
 platform :ios, '9.0'
