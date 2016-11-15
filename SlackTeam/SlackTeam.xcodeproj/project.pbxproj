@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2712270A1DDB1A9500A78D87 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271227091DDB1A9500A78D87 /* Constants.swift */; };
 		2712270C1DDB205500A78D87 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2712270B1DDB205500A78D87 /* Profile.swift */; };
+		2712270F1DDB2EFA00A78D87 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2712270E1DDB2EFA00A78D87 /* NSError.swift */; };
 		27277FD21DDABF7700E0AC5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27277FD11DDABF7700E0AC5C /* AppDelegate.swift */; };
 		27277FD41DDABF7700E0AC5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27277FD31DDABF7700E0AC5C /* ViewController.swift */; };
 		27277FD71DDABF7700E0AC5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27277FD51DDABF7700E0AC5C /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		271227091DDB1A9500A78D87 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2712270B1DDB205500A78D87 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		2712270E1DDB2EFA00A78D87 /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
 		27277FCE1DDABF7700E0AC5C /* SlackTeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlackTeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27277FD11DDABF7700E0AC5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27277FD31DDABF7700E0AC5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			children = (
 				27277FFA1DDAC72000E0AC5C /* UIFontExtensions.swift */,
 				272780001DDACC7500E0AC5C /* UIViewExtensions.swift */,
+				2712270E1DDB2EFA00A78D87 /* NSError.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				2712270A1DDB1A9500A78D87 /* Constants.swift in Sources */,
 				27277FF41DDAC34100E0AC5C /* ListViewController.swift in Sources */,
 				272780071DDAD86D00E0AC5C /* SlackClient.swift in Sources */,
+				2712270F1DDB2EFA00A78D87 /* NSError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
