@@ -68,7 +68,7 @@ class ListViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     
-    func awaeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         configureSelectionBackgroundColor()
         configureProfileImage()
@@ -93,7 +93,7 @@ class ListViewControllerTableViewCell: UITableViewCell {
         usernameLabel.text = profile.username
         profileImageView.layer.borderColor = profileColor?.cgColor
         if let imageUrl = URL(string: profile.imageUrl72) {
-            profileImageView.sd_setImage(with: imageUrl)
+            profileImageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "profilePlaceholder"))
         }
     }
 }
