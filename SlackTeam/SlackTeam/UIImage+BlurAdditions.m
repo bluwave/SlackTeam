@@ -17,7 +17,7 @@
 - (UIImage *)gr_blurredImageWithRadius:(CGFloat)radius iterations:(NSUInteger)iterations tintColor:(UIColor *)tintColor
 {
     //image must be nonzero size
-    if (floor(self.size.width) * floor(self.size.height) <= 0.0f) return self;
+    if (floorf(self.size.width) * floorf(self.size.height) <= 0.0f) return self;
     
     //boxsize must be an odd integer
     uint32_t boxSize = (uint32_t)(radius * self.scale);
@@ -25,6 +25,18 @@
     
     //create image buffers
     CGImageRef imageRef = self.CGImage;
+    
+    //convert to ARGB if it isn't
+    if (CGImageGetBitsPerPixel(imageRef) != 32 ||
+        CGImageGetBitsPerComponent(imageRef) != 8 ||
+        !((CGImageGetBitmapInfo(imageRef) & kCGBitmapAlphaInfoMask)))
+    {
+        UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
+        [self drawAtPoint:CGPointZero];
+        imageRef = UIGraphicsGetImageFromCurrentImageContext().CGImage;
+        UIGraphicsEndImageContext();
+    }
+    
     vImage_Buffer buffer1, buffer2;
     buffer1.width = buffer2.width = CGImageGetWidth(imageRef);
     buffer1.height = buffer2.height = CGImageGetHeight(imageRef);
