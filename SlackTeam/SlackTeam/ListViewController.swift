@@ -16,6 +16,8 @@ class ListViewController: UIViewController {
     let cellIdentifier = "cell"
     let apiClient = SlackClient()
     var profiles = [Profile]()
+    var pushAnimator: CircularTransitionAnimator?
+    var selectedCellIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +47,15 @@ class ListViewController: UIViewController {
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row < profiles.count {
+            navigationController?.delegate = self
+            selectedCellIndexPath = indexPath
+            configurePushAnimator(forRowAt: indexPath)
             let profileDetailsViewController = DetailViewController(nibName: String(describing: DetailViewController.self), bundle: nil)
+            profileDetailsViewController.providesPresentationContextTransitionStyle = true
+            profileDetailsViewController.definesPresentationContext = true
+            profileDetailsViewController.modalPresentationStyle = .custom
             profileDetailsViewController.profile = profiles[indexPath.row]
             navigationController?.pushViewController(profileDetailsViewController, animated: true)
         }
@@ -62,6 +71,51 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configureWithProfile(profile: profiles[indexPath.row])
         }
         return cell
+    }
+}
+
+extension ListViewController: UINavigationControllerDelegate {
+    
+    func configurePushAnimator(forRowAt indexPath: IndexPath) {
+        pushAnimator = CircularTransitionAnimator()
+        pushAnimator?.blurImage = blurredImageOfView()
+        
+        if let cell = tableView.cellForRow(at: indexPath) as? ListViewControllerTableViewCell {
+            pushAnimator?.profileImage = cell.profileImageView.image
+        }
+        pushAnimator?.profileColor = UIColor.hx_color(withHexRGBAString: profiles[indexPath.row].color)
+    }
+    
+    func blurredImageOfView() -> UIImage? {
+        let image = view.snapshotWithScale(scale: 1.0)
+        return image?.gr_blurredImage(withRadius: 12, iterations: 3, tintColor: nil)
+    }
+    
+    func selectedRectForPushAnimation() -> CGRect {
+        if let selectedCellIndexPath = selectedCellIndexPath {
+            var cellRectInView = tableView.rectForRow(at: selectedCellIndexPath)
+            let yOffset = tableView.contentOffset
+            cellRectInView = cellRectInView.offsetBy(dx: -yOffset.x, dy: -yOffset.y - self.tableView.contentInset.top)
+            
+            if let cell = tableView.cellForRow(at: selectedCellIndexPath) as? ListViewControllerTableViewCell {
+                let cellImageViewRect = tableView.convert(cell.profileImageView.frame, from: tableView)
+                cellRectInView.origin.x += cellImageViewRect.origin.x
+                cellRectInView.origin.y += cellImageViewRect.origin.y + self.topLayoutGuide.length
+                cellRectInView.size = cell.profileImageView.frame.size
+                cellRectInView = view.convert(cellRectInView, from: view)
+                return cellRectInView
+            }
+        }
+        
+        return CGRect.zero
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if (operation == .push) {
+            pushAnimator?.selectedProfileRect = selectedRectForPushAnimation()
+            return self.pushAnimator;
+        }
+        return nil;
     }
 }
 
@@ -99,5 +153,80 @@ class ListViewControllerTableViewCell: UITableViewCell {
         if let imageUrl = URL(string: profile.imageUrl72) {
             profileImageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "profilePlaceholder"))
         }
+    }
+}
+
+class CircularTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning, CAAnimationDelegate {
+    weak var transitionContext: UIViewControllerContextTransitioning?
+    var selectedProfileRect = CGRect.zero
+    var blurImage: UIImage?
+    var profileImage: UIImage?
+    var profileColor: UIColor? = UIColor.clear
+    
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.3
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        
+        //  init
+        self.transitionContext = transitionContext
+        let containerView = transitionContext.containerView
+        containerView.backgroundColor = UIColor.black
+        
+        if let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) as? DetailViewController,
+            let from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)
+        {
+            //  setup profile image to animate to next viewController positions
+            let profileImageView = UIImageView(image: profileImage)
+            profileImageView.frame = selectedProfileRect
+            profileImageView.makeCircular()
+            profileImageView.layer.borderColor = profileColor?.cgColor
+            profileImageView.layer.borderWidth = 4.0
+            to.view.backgroundColor = UIColor.clear
+            
+            let bgImageView = UIImageView(image: blurImage)
+            bgImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            to.view.insertSubview(bgImageView, at: 0)
+            
+            to.view.addSubview(profileImageView)
+            
+            //  add views to containerView
+            containerView.addSubview(from.view)
+            containerView.addSubview(to.view)
+            
+            //  animation for the circlular mask from previous viewController profile image
+            let startRect = selectedProfileRect
+            let circleMaskPathInitial: UIBezierPath = UIBezierPath(ovalIn: startRect)
+            
+            let extremePoint = CGPoint(x: containerView.center.x, y: to.view.bounds.height)
+            let radius = sqrt((extremePoint.x * extremePoint.x) + (extremePoint.y * extremePoint.y))
+            let circleMaskFinal = UIBezierPath(ovalIn: startRect.insetBy(dx: -radius, dy: -radius))
+            
+            let maskLayer = CAShapeLayer()
+            maskLayer.path = circleMaskFinal.cgPath
+            to.view.layer.mask = maskLayer
+            
+            let maskLayerAnimation = CABasicAnimation(keyPath: "path")
+            maskLayerAnimation.fromValue = circleMaskPathInitial.cgPath
+            maskLayerAnimation.toValue = circleMaskFinal.cgPath
+            maskLayerAnimation.duration = transitionDuration(using: transitionContext)
+            maskLayerAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            maskLayerAnimation.delegate = self
+            maskLayer.add(maskLayerAnimation, forKey: "path")
+            
+            //  animate profile image to proper location
+            var profileImageViewDestinationPoint = to.view.center
+            profileImageViewDestinationPoint.y -= selectedProfileRect.size.height / 4
+            
+            UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+                profileImageView.center = profileImageViewDestinationPoint
+            })
+        }
+    }
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        transitionContext?.completeTransition(!(self.transitionContext?.transitionWasCancelled ?? true))
+        transitionContext?.viewController(forKey: UITransitionContextViewControllerKey.from)?.view.layer.mask = nil
     }
 }
