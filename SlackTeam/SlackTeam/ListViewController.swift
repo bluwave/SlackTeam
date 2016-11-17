@@ -53,9 +53,6 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             selectedCellIndexPath = indexPath
             configurePushAnimator(forRowAt: indexPath)
             let profileDetailsViewController = DetailViewController(nibName: String(describing: DetailViewController.self), bundle: nil)
-            profileDetailsViewController.providesPresentationContextTransitionStyle = true
-            profileDetailsViewController.definesPresentationContext = true
-            profileDetailsViewController.modalPresentationStyle = .custom
             profileDetailsViewController.profile = profiles[indexPath.row]
             navigationController?.pushViewController(profileDetailsViewController, animated: true)
         }
@@ -168,8 +165,6 @@ class CircularTransitionAnimator: NSObject, UIViewControllerAnimatedTransitionin
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        
-        //  init
         self.transitionContext = transitionContext
         let containerView = transitionContext.containerView
         containerView.backgroundColor = UIColor.black
@@ -177,52 +172,66 @@ class CircularTransitionAnimator: NSObject, UIViewControllerAnimatedTransitionin
         if let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) as? DetailViewController,
             let from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)
         {
+            to.view.frame = from.view.frame
+            
+            //  setup blurred bg image
+            configureBlurredImageBackground(destinationView: to.view)
+            
             //  setup profile image to animate to next viewController positions
-            let profileImageView = UIImageView(image: profileImage)
-            profileImageView.frame = selectedProfileRect
-            profileImageView.makeCircular()
-            profileImageView.layer.borderColor = profileColor?.cgColor
-            profileImageView.layer.borderWidth = 4.0
-            to.view.backgroundColor = UIColor.clear
-            
-            let bgImageView = UIImageView(image: blurImage)
-            bgImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            to.view.insertSubview(bgImageView, at: 0)
-            
-            to.view.addSubview(profileImageView)
+            let profileImageView = configureProfileImageView(destinationView: to.view)
             
             //  add views to containerView
             containerView.addSubview(from.view)
             containerView.addSubview(to.view)
             
             //  animation for the circlular mask from previous viewController profile image
-            let startRect = selectedProfileRect
-            let circleMaskPathInitial: UIBezierPath = UIBezierPath(ovalIn: startRect)
+            animateGrowingCircle(containerView: containerView, to: to.view)
             
-            let extremePoint = CGPoint(x: containerView.center.x, y: to.view.bounds.height)
-            let radius = sqrt((extremePoint.x * extremePoint.x) + (extremePoint.y * extremePoint.y))
-            let circleMaskFinal = UIBezierPath(ovalIn: startRect.insetBy(dx: -radius, dy: -radius))
-            
-            let maskLayer = CAShapeLayer()
-            maskLayer.path = circleMaskFinal.cgPath
-            to.view.layer.mask = maskLayer
-            
-            let maskLayerAnimation = CABasicAnimation(keyPath: "path")
-            maskLayerAnimation.fromValue = circleMaskPathInitial.cgPath
-            maskLayerAnimation.toValue = circleMaskFinal.cgPath
-            maskLayerAnimation.duration = transitionDuration(using: transitionContext)
-            maskLayerAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-            maskLayerAnimation.delegate = self
-            maskLayer.add(maskLayerAnimation, forKey: "path")
-            
-            //  animate profile image to proper location
-            var profileImageViewDestinationPoint = to.view.center
-            profileImageViewDestinationPoint.y -= selectedProfileRect.size.height / 4
-            
+            //  Animate profile image to correct position
             UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-                profileImageView.center = profileImageViewDestinationPoint
+                profileImageView.center = to.view.center
             })
         }
+    }
+    
+    func configureProfileImageView(destinationView: UIView) -> UIImageView {
+        let profileImageView = UIImageView(image: profileImage)
+        profileImageView.frame = selectedProfileRect
+        profileImageView.makeCircular()
+        profileImageView.layer.borderColor = profileColor?.cgColor
+        profileImageView.layer.borderWidth = 4.0
+        destinationView.addSubview(profileImageView)
+        return profileImageView
+    }
+    
+    func configureBlurredImageBackground(destinationView: UIView) {
+        let blurredBgImageView = UIImageView(image: blurImage)
+        blurredBgImageView.contentMode = .scaleAspectFill
+        blurredBgImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        destinationView.insertSubview(blurredBgImageView, at: 0)
+    }
+    
+    func animateGrowingCircle(containerView: UIView, to maskedView: UIView) {
+        let startRect = selectedProfileRect
+        let circleMaskPathInitial: UIBezierPath = UIBezierPath(ovalIn: startRect)
+        
+        let padding: CGFloat = 200   // useful for ipad landscape
+        let extremePoint = CGPoint(x: containerView.center.x, y: maskedView.bounds.height + padding)
+        let radius = sqrt((extremePoint.x * extremePoint.x) + (extremePoint.y * extremePoint.y))
+        let circleMaskFinal = UIBezierPath(ovalIn: startRect.insetBy(dx: -radius, dy: -radius))
+        
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = circleMaskFinal.cgPath
+        maskedView.layer.mask = maskLayer
+        
+        let keyPath = "path"
+        let maskLayerAnimation = CABasicAnimation(keyPath: keyPath)
+        maskLayerAnimation.fromValue = circleMaskPathInitial.cgPath
+        maskLayerAnimation.toValue = circleMaskFinal.cgPath
+        maskLayerAnimation.duration = transitionDuration(using: transitionContext)
+        maskLayerAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        maskLayerAnimation.delegate = self
+        maskLayer.add(maskLayerAnimation, forKey: keyPath)
     }
     
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
