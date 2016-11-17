@@ -53,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().barStyle = UIBarStyle.black
+        UIBarButtonItem.appearance().setTitleTextAttributes(navBarTitleAttribtues, for: .normal)
     }
 }
 
