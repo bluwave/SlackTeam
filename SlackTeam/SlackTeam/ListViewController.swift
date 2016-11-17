@@ -194,14 +194,22 @@ class CircularTransitionAnimator: NSObject, UIViewControllerAnimatedTransitionin
                 //  add constraints so profile image stays centered on ipad rotation
                 let vertical = NSLayoutConstraint(item: profileImageView, attribute: .centerY, relatedBy: .equal, toItem: profileImageView.superview, attribute: .centerY, multiplier: 1, constant: 0)
                 let horiz = NSLayoutConstraint(item: profileImageView, attribute: .centerX, relatedBy: .equal, toItem: profileImageView.superview, attribute: .centerX, multiplier: 1, constant: 0)
+                
+                let views = ["view":profileImageView]
+                let width = NSLayoutConstraint.constraints(withVisualFormat: "H:[view(width)]", options: [], metrics: ["width": profileImageView.bounds.size.width], views:views)
+                let height = NSLayoutConstraint.constraints(withVisualFormat: "V:[view(height)]", options: [], metrics: ["height": profileImageView.bounds.size.height], views: views)
+                
                 profileImageView.translatesAutoresizingMaskIntoConstraints = false
                 profileImageView.superview?.addConstraints([vertical, horiz])
+                profileImageView.addConstraints(width)
+                profileImageView.addConstraints(height)
             })
         }
     }
     
     func configureProfileImageView(destinationView: UIView) -> UIImageView {
         let profileImageView = UIImageView(image: profileImage)
+        profileImageView.contentMode = .scaleAspectFit
         profileImageView.frame = selectedProfileRect
         profileImageView.makeCircular()
         profileImageView.layer.borderColor = profileColor?.cgColor
