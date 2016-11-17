@@ -42,19 +42,19 @@
                             <rect key="frame" x="15" y="0.0" width="345" height="334"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sei-rJ-3OK">
-                                    <rect key="frame" x="0.0" y="38" width="345" height="24"/>
+                                    <rect key="frame" x="0.0" y="50" width="345" height="23.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKB-hB-hTd">
-                                    <rect key="frame" x="0.0" y="77" width="345" height="24"/>
+                                    <rect key="frame" x="0.0" y="88.5" width="345" height="23.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dR5-yJ-2jE">
-                                    <rect key="frame" x="0.0" y="116" width="345" height="24"/>
+                                    <rect key="frame" x="0.0" y="127" width="345" height="23.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -66,7 +66,7 @@
                                 <constraint firstItem="jKB-hB-hTd" firstAttribute="leading" secondItem="fXc-Fk-tWZ" secondAttribute="leading" id="9QA-b0-RWK"/>
                                 <constraint firstAttribute="trailing" secondItem="Sei-rJ-3OK" secondAttribute="trailing" id="DFQ-EO-SOQ"/>
                                 <constraint firstItem="jKB-hB-hTd" firstAttribute="top" secondItem="Sei-rJ-3OK" secondAttribute="bottom" constant="15" id="Ezt-W2-SRv"/>
-                                <constraint firstItem="Sei-rJ-3OK" firstAttribute="top" secondItem="fXc-Fk-tWZ" secondAttribute="top" constant="38" id="G9p-bX-dbi"/>
+                                <constraint firstItem="Sei-rJ-3OK" firstAttribute="top" secondItem="fXc-Fk-tWZ" secondAttribute="top" constant="50" id="G9p-bX-dbi"/>
                                 <constraint firstItem="Sei-rJ-3OK" firstAttribute="leading" secondItem="fXc-Fk-tWZ" secondAttribute="leading" id="N5p-HX-Qdj"/>
                                 <constraint firstItem="dR5-yJ-2jE" firstAttribute="top" secondItem="jKB-hB-hTd" secondAttribute="bottom" constant="15" id="cvL-ia-ZCk"/>
                                 <constraint firstItem="dR5-yJ-2jE" firstAttribute="leading" secondItem="fXc-Fk-tWZ" secondAttribute="leading" id="mwm-Fn-g4l"/>

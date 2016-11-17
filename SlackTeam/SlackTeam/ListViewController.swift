@@ -188,8 +188,14 @@ class CircularTransitionAnimator: NSObject, UIViewControllerAnimatedTransitionin
             animateGrowingCircle(containerView: containerView, to: to.view)
             
             //  Animate profile image to correct position
-            UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+            UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: { 
                 profileImageView.center = to.view.center
+            }, completion: { (completed) in
+                //  add constraints so profile image stays centered on ipad rotation
+                let vertical = NSLayoutConstraint(item: profileImageView, attribute: .centerY, relatedBy: .equal, toItem: profileImageView.superview, attribute: .centerY, multiplier: 1, constant: 0)
+                let horiz = NSLayoutConstraint(item: profileImageView, attribute: .centerX, relatedBy: .equal, toItem: profileImageView.superview, attribute: .centerX, multiplier: 1, constant: 0)
+                profileImageView.translatesAutoresizingMaskIntoConstraints = false
+                profileImageView.superview?.addConstraints([vertical, horiz])
             })
         }
     }
